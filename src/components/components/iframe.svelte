@@ -1,24 +1,23 @@
 <script>
-	import { addAttributes } from '../stores'
-	import Loading from './loading.svelte'
+	import { addAttributes } from "../stores";
+	import Loading from "./loading.svelte";
 
-	export let props
+	export let props;
 
-	let loaded, dimensions
+	let loaded, dimensions;
 
-	const { activeItem } = props
+	const { activeItem } = props;
 
-	const setDimensions = () =>
-		(dimensions = props.calculateDimensions(activeItem))
+	const setDimensions = () => (dimensions = props.calculateDimensions(activeItem));
 
-	setDimensions()
+	setDimensions();
 
-	props.setResizeFunc(setDimensions)
+	props.setResizeFunc(setDimensions);
 
 	const addSrc = (node) => {
-		addAttributes(node, activeItem.attr)
-		node.src = activeItem.iframe
-	}
+		addAttributes(node, activeItem.attr);
+		node.src = activeItem.iframe;
+	};
 </script>
 
 <div
@@ -33,6 +32,6 @@
 		allow="autoplay; fullscreen"
 		title={activeItem.title}
 		on:load={() => (loaded = true)}
-	/>
+	></iframe>
 	<Loading {activeItem} {loaded} />
 </div>
